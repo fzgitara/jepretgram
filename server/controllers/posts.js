@@ -4,7 +4,7 @@ const User = require('../models/user')
 module.exports = {
   createPost (req,res) {
     const {title, caption, author} = req.body
-    const post = new Post ({title, user, category})
+    const post = new Post ({title, user, author})
     post.save((err, data) => {
         if(!err) {
           res.status(200).json(data)
