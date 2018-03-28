@@ -5,9 +5,10 @@ A simple photo sharing app
 # How to run
 
 ## On server:
-* NPM install
+* npm install
+* run mongod
 * node bin/www
 
 ## On client:
-* NPM install
-* NPM run dev
+* npm install
+* npm run dev
