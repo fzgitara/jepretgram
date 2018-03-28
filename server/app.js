@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const multer = require('multer');
 
 mongoose.connect('mongodb://localhost/jepretgram',(err)=>{
   if(!err){
@@ -20,6 +21,21 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+const uploadDisk = multer({
+  storage : multer.diskStorage({
+    destination: (req, file, cb)=>{
+      cb(null,'./image')
+    },
+    filename:(req, file, cb)=>{
+      cb(null,`${Date.now()}.${file.originalname.split('.').pop()}`)
+    }
+  })
+})
+
+app.post('/upload', uploadDisk.array('image', 12), function (req, res, next) {
+  console.log(req.files)
+})
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
