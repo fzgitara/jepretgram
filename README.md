@@ -10,4 +10,4 @@ A simple photo sharing app
 
 ## On client:
 * NPM install
-* live-server
+* NPM run dev
